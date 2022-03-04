@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  ui:
+    build: ./ui/web
+    expose:
+      - "3000"
+    ports:
+      - "3000:3000"
+    links:
+      - api:api
+    environment:
+      DEBUG: 'true'
+    command: npm start
+    depends_on:
+      - api
+
+  api:
+    build: ./api
+    expose:
+      - "8000"
+    ports:
+      - "8000:8000"
+    links:
+      - postgres:postgres
+    command: sh -c "poetry run python manage.py migrate && poetry run python manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data/
+    env_file:
+      - ./api/instagram/.env
+
+volumes:
+  pgdata:
