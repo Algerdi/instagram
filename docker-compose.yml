@@ -22,7 +22,7 @@ services:
     ports:
       - "8000:8000"
     links:
-      - postgres:postgres
+      - postgres:db
     command: sh -c "poetry run python manage.py migrate && poetry run python manage.py runserver 0.0.0.0:8000"
     depends_on:
       - postgres
@@ -41,7 +41,7 @@ services:
     container_name: pgadmin4_container
     image: dpage/pgadmin4
     links:
-      - db:db
+      - postgres:db
     env_file:
       - ./api/instagram/.env
     ports:
