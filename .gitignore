@@ -1,4 +1,3 @@
 api/venv
-api/postgres_data
 api/db.sqlite3
 __pycache__/
