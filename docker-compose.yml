@@ -28,13 +28,24 @@ services:
       - postgres
 
   postgres:
-    image: postgres:latest
-    ports:
-      - "5432:5432"
-    volumes:
-      - pgdata:/var/lib/postgresql/data/
+    container_name: pgdb
+    image: postgres
     env_file:
       - ./api/instagram/.env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+  
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    links:
+      - db:db
+    env_file:
+      - ./api/instagram/.env
+    ports:
+      - 5050:80
 
 volumes:
   pgdata:
