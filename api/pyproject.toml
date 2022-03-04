@@ -8,6 +8,8 @@ authors = ["g-kisenkov <85692332+g-kisenkov@users.noreply.github.com>"]
 python = "^3.10"
 Django = "^4.0.3"
 djangorestframework = "^3.13.1"
+psycopg2-binary = "^2.9.3"
+django-environ = "^0.8.1"
 
 [tool.poetry.dev-dependencies]
 
