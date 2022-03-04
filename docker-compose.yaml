@@ -1,0 +1,14 @@
+version: '3.10'
+
+services:
+  db:
+    container_name: pgdb
+    image: postgres
+    env_file:
+      - ./api/instagram/.env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+volumes:
+  postgres_data:
