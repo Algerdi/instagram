@@ -1,0 +1,20 @@
+name: Deploy on EC2
+
+on:
+  push:
+    branches: [ GITHA ]
+
+jobs:
+
+  deploy:
+    name: Deploy to EC2 on GitHubA branch push
+    runs-on: ubuntu-latest
+
+    steps:
+    
+      - name: Checkout the files
+        uses: actions/checkout@v2
+        
+      - run: echo Сформирован проект
+      
+      - run: pwd
