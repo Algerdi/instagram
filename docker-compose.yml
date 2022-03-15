@@ -3,6 +3,9 @@ version: '3'
 services:
   ui:
     build: ./ui/web
+    volumes:
+      - ./ui/web/src:/ui/web/src
+      - ./ui/web/public:/ui/web/public
     expose:
       - "3000"
     ports:
@@ -17,6 +20,8 @@ services:
 
   api:
     build: ./api
+    volumes:
+      - ./api:/api
     expose:
       - "8000"
     ports:
