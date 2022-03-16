@@ -2,7 +2,7 @@ name: Deploy on EC2
 
 on:
   push:
-    branches: [ GITHA ]
+    branches: [ main ]
 
 jobs:
 
