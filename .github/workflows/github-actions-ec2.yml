@@ -1,0 +1,41 @@
+name: Deploy on EC2
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+
+  deploy:
+    name: Deploy to EC2 on GitHubA branch push
+    runs-on: ubuntu-latest
+
+    steps:
+    
+     # Сoping from the repository to the virtual machine and creating an archive
+      - name: Checkout the files
+        uses: actions/checkout@v2
+      - run: zip -r instagram.zip .
+      
+      # Creating a script and a verification file to connect to the server
+      - run: mkdir -p ~/.ssh/
+      - run: echo "${{ secrets.TEST_CODE }}" > ~/.ssh/mypair.key; chmod 400 ~/.ssh/mypair.key
+      - run: cat ~/.ssh/mypair.key
+      - run: |
+          cat >>~/.ssh/config <<END
+          Host remote_host
+            HostName 54.82.170.146
+            User ec2-user
+            IdentityFile ~/.ssh/mypair.key
+            StrictHostKeyChecking no
+          END
+      
+      # Connecting to the server and update all files on the server
+      - run: scp ./instagram.zip remote_host:~/
+      - run: ssh remote_host "cd ./instagram && sudo docker-compose stop"
+      - run: ssh remote_host "sudo rm -rf instagram"
+      - run: ssh remote_host "unzip instagram.zip -d instagram"
+      - run: ssh remote_host "sudo rm instagram.zip"
+      
+      # Launching docker-compose
+      - run: ssh remote_host "cd ./instagram && sudo docker-compose up -d --build"
