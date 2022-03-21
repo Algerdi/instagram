@@ -46,7 +46,7 @@ export class CdkEc2InstagramStack extends cdk.Stack {
       role: role
     });
 
-    const asset = new Asset(this, 'Asset', { path: path.join(__dirname, './config.sh') });
+    const asset = new Asset(this, 'Asset', { path: path.join(__dirname, '../configuration/config.sh') });
     const localPath = ec2Instance.userData.addS3DownloadCommand({
       bucket: asset.bucket,
       bucketKey: asset.s3ObjectKey,
