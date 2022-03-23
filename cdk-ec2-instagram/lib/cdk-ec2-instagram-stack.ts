@@ -1,6 +1,7 @@
 import * as ec2 from "aws-cdk-lib/aws-ec2";
 import * as cdk from 'aws-cdk-lib';
 import * as iam from 'aws-cdk-lib/aws-iam'
+import { KeyPair } from 'cdk-ec2-key-pair';
 import * as path from 'path';
 import { Asset } from 'aws-cdk-lib/aws-s3-assets';
 import { Construct } from 'constructs';
@@ -8,6 +9,13 @@ import { Construct } from 'constructs';
 export class CdkEc2InstagramStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
+
+        // Create the Key Pair
+    const key = new KeyPair(this, 'A-Key-Pair', {
+      name: 'cdk-ec2-instagram',
+      description: 'This is a Key Pair for EC2 instance',
+      storePublicKey: true
+    });
 
     const vpc = new ec2.Vpc(this, 'VPC', {
       natGateways: 0,
@@ -30,6 +38,9 @@ export class CdkEc2InstagramStack extends cdk.Stack {
       assumedBy: new iam.ServicePrincipal('ec2.amazonaws.com')
     })
 
+    // Grant read access to the private key to a role or user
+    key.grantReadOnPrivateKey(role)
+
     role.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonSSMManagedInstanceCore'))
 
     const ami = new ec2.AmazonLinuxImage({
@@ -42,7 +53,7 @@ export class CdkEc2InstagramStack extends cdk.Stack {
       instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
       machineImage: ami,
       securityGroup: securityGroup,
-      keyName: 'cdk-ec2-instagram',
+      keyName: key.keyPairName,
       role: role
     });
 
