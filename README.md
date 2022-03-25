@@ -10,6 +10,20 @@ https://github.com/pyenv/pyenv
 https://github.com/nvm-sh/nvm
 
 https://python-poetry.org/
+
+# Setting up deployment infrastructure
+- Go to `cdk-ec2-instagram`
+- Run `npm i`
+- If needed, ensure you have the [prerequisites](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html#getting_started_prerequisites) for working with AWS
+- Run `cdk deploy`
+- Run the following command to download your private key-pair needed for connecting to the EC2 instance through SSH:
+    ```
+    aws secretsmanager get-secret-value \
+    --secret-id ec2-ssh-key/cdk-ec2-instagram/private \
+    --query SecretString \
+    --output text > cdk-ec2-instagram.pem
+    ```
+- Run `cdk destroy` when you're done playing with the cloud to remove the infrastructure and avoid incuring excessive charges.
 # Manual deployment
 - [Reference](https://medium.com/@umairnadeem/deploy-to-aws-using-docker-compose-simple-210d71f43e67)
 ---
