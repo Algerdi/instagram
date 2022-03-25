@@ -4,3 +4,7 @@ __pycache__/
 .idea/
 *.pem
 *.zip
+*/node_modules
+*/cdk.out
+*.js
+*.d.ts
