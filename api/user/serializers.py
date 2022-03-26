@@ -6,7 +6,9 @@ class NewUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = NewUser
-        fields = '__all__'
+        fields = ('id', 'email', 'user_name', 'gender',
+                  'name', 'avatar', 'phone_number',
+                  'website', 'start_date', 'bio')
         extra_kwargs = {
             'password': {'write_only': True}
         }
