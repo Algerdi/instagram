@@ -12,6 +12,8 @@ psycopg2-binary = "^2.9.3"
 django-environ = "^0.8.1"
 django-rest-swagger = "^2.2.0"
 drf-yasg = {extras = ["validation"], version = "^1.20.0"}
+django-phonenumber-field = {extras = ["phonenumbers"], version = "^6.1.0"}
+Pillow = "^9.0.1"
 
 [tool.poetry.dev-dependencies]
 
