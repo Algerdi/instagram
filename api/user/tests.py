@@ -166,6 +166,24 @@ class UserAPITests(APITestCase, UserFixtures):
         # Check is status is correct
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
+    def test_unsuccessful_register_user(self):
+        """
+        Register a new user with some wrong fields. Expecting that it
+        returns status code 400 (bad request) and serializer data
+        """
+        self.setup_user()
+        self.user["phone_number"] = "wrong number"
+        url = reverse("register")
+        response = self.client.post(url, self.user, format="json")
+        serializer_data = response.json()
+
+        # Check is status is correct
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+        # Check serializer data
+        self.assertEqual("The phone number entered is not valid.",
+                         serializer_data["phone_number"][0])
+
     def test_getting_user_by_ID(self):
         """
         Get info on user by its ID
@@ -267,3 +285,16 @@ class UserAPITests(APITestCase, UserFixtures):
             "Token is blacklisted",
             response.json()["detail"]
         )
+
+    def test_unsuccessful_user_logout(self):
+        """
+        Giving not existing refresh token
+        Expeect status code 400 (bad request)
+        """
+        url = reverse("blacklist")
+        response = self.client.post(url, {
+            "refresh": "wrong token"
+        })
+
+        # Check if status correct
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
