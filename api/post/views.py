@@ -6,22 +6,17 @@ from rest_framework.response import Response
 from .models import Post
 
 
-class PostList(generics.ListCreateAPIView):
+class PostList(generics.ListAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
 
-class PostDetail(generics.RetrieveDestroyAPIView):
+class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
 
-class PostEdit(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
-
-
-class PostNew(APIView):
+class PostCreate(APIView):
     def post(self, request):
         serializers = PostSerializer(data=request.data)
         serializers.is_valid(raise_exception=True)
