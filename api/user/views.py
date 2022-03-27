@@ -56,7 +56,7 @@ class BlacklistTokenUpdateView(APIView):
     permission_classes = [AllowAny]
     authentication_classes = ()
 
-    @swagger_auto_schema(request_body=TokenRefreshSerializer)
+    @swagger_auto_schema(request_body=TokenRefreshSerializer, responses={205: "reset content"})
     def post(self, request):
         try:
             refresh_token = request.data["refresh"]

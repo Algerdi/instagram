@@ -15,6 +15,7 @@ drf-yasg = {extras = ["validation"], version = "^1.20.0"}
 django-phonenumber-field = {extras = ["phonenumbers"], version = "^6.1.0"}
 Pillow = "^9.0.1"
 djangorestframework-simplejwt = "^5.1.0"
+coverage = "^6.3.2"
 
 [tool.poetry.dev-dependencies]
 
