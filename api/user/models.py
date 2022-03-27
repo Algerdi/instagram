@@ -56,7 +56,7 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     )
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
 
     objects = CustomAccountManager()
 
