@@ -26,8 +26,8 @@ schema_view = get_schema_view(
     public=True,
     permission_classes=[permissions.AllowAny],
 )
-# Wire up our API using automatic URL routing.
-# Additionally, we include login URLs for the browsable API.
+
+
 urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls',
