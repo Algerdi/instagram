@@ -7,3 +7,7 @@ __pycache__/
 .vscode/
 media/
 api/.coverage
+*/node_modules
+*/cdk.out
+*.js
+*.d.ts
