@@ -4,6 +4,9 @@ __pycache__/
 .idea/
 *.pem
 *.zip
+.vscode/
+media/
+api/.coverage
 */node_modules
 */cdk.out
 *.js
