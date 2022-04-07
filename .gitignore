@@ -11,3 +11,4 @@ api/.coverage
 */cdk.out
 *.js
 *.d.ts
+venv

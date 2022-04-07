@@ -6,6 +6,8 @@ services:
     volumes:
       - ./ui/web/src:/ui/web/src
       - ./ui/web/public:/ui/web/public
+      - ./ui/web/package.json:/ui/web/package.json
+      - ./ui/web/package-lock.json:/ui/web/package-lock.json
     expose:
       - "3000"
     ports:
