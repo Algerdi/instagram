@@ -10,7 +10,7 @@ router = routers.DefaultRouter()
 router.register('instagram', views.PostViewSet,
                 basename='instagram')
 
-comments_router = routers.NestedDefaultRouter(
+comments_router = routers.NestedSimpleRouter(
     router, parent_prefix='instagram', lookup='p')
 comments_router.register('comments', views.CommentViewSet,
                          basename='p-comments')
