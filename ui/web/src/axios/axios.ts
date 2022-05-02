@@ -13,6 +13,7 @@ const api = axios.create({
     accept: 'application/json',
   },
 });
+
 api.interceptors.response.use(
   response => response,
   error => {

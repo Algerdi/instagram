@@ -1,24 +1,37 @@
-import axios from 'axios'
+import api from "../../axios/axios";
 import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE
-} from './loginTypes'
+} from './loginTypes';
 
-export const login = () => {
+export const login = (email: string, password: string) => {
   return (dispatch: any) => {
     dispatch(loginRequest())
-    axios
-      .get('https://jsonplaceholder.typicode.com/users')
+    const apiUrl = "http://localhost:8000/api/token/";
+    console.log(email, password);
+    api.post(apiUrl, {
+      email: email,
+      password: password
+    })
       .then(response => {
-        // response.data is the users
-        const users = response.data
-        dispatch(loginSuccess(users))
+        if (response.status === 200) {
+          (api.defaults.headers as any)['Authorization'] = "JWT " + response.data.access;
+          localStorage.setItem('access_token', response.data.access);
+          localStorage.setItem('refresh_token', response.data.refresh);
+          console.log(response.data.access);
+          console.log(response.data.refresh);
+          dispatch(loginSuccess([
+            response.data.refresh,
+            response.data.access
+          ]))
+        } else {
+          dispatch(loginFailure(response))
+        }
       })
       .catch(error => {
-        // error.message is the error message
-        dispatch(loginFailure(error.message))
-      })
+        dispatch(loginFailure(error.response))
+      });
   }
 }
 
@@ -28,10 +41,10 @@ export const loginRequest = () => {
   }
 }
 
-export const loginSuccess = (users: any) => {
+export const loginSuccess = (tokens: any) => {
   return {
     type: LOGIN_SUCCESS,
-    payload: users
+    payload: tokens
   }
 }
 

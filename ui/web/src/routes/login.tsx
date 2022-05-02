@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { login } from '../redux/login/loginActions'
 import "../styles/login/login.css"
@@ -6,15 +6,26 @@ import background from "../styles/login/images/phone-frame.png"
 
 // @ts-ignore
 function Login ({ userData, login }) {
-  useEffect(() => {
-    login()
-  }, [])
-  console.log(userData)
-  return userData.loading ? (
-    <h2>Loading</h2>
-  ) : userData.error ? (
-    <h2>{userData.error}</h2>
-  ) : (
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const submit = (event: any) => {
+    event.preventDefault();
+    login(email, password);
+
+  }
+
+  // useEffect(() => {
+  //   login()
+  // }, [])
+  // console.log(userData)
+  // return userData.loading ? (
+    // <h2>Loading</h2>
+  // ) : userData.error ? (
+  //   <h2>{userData.error}</h2>
+  // ) : (
+  return (
     <>
       <div className="container">
         <div className="main-container">
@@ -34,28 +45,23 @@ function Login ({ userData, login }) {
                   <img src={require("../styles/login/images/logo-light.png")} alt="Instagram logo" className="logo-light"/>
                   <img src={require("../styles/login/images/logo-dark.png")} alt="Instagram logo" className="logo-dark"/>
                 </div>
+                <form onSubmit={submit}>
                 <div className="signin-form" id="signin-form">
                   <div className="form-group">
-                    <div className="animateinput">
-                                              {/*<span>*/}
-                                              {/*    Phone number, username or email*/}
-                                              {/*</span>*/}
-                      <input type="text" placeholder="Phone number, username or email"/>
+                    <div className="animate-input">
+                      <input type="text" placeholder="Phone number, username or email" value={email}
+                             onChange={event => setEmail(event.target.value)} />
                     </div>
                   </div>
                   <div className="form-group">
                     <div className="animate-input">
-                                              {/*<span>*/}
-                                              {/*    Password*/}
-                                              {/*</span>*/}
-                      <input type="password" placeholder="Password"/>
+                      <input type="password" placeholder="Password" value={password}
+                             onChange={event => setPassword(event.target.value)} />
                       <button>Show</button>
                     </div>
                   </div>
                   <div className="btn-group">
-                    <button className="btn-login" id="signin-btn"type="submit" value="Submit">
-                      Log In
-                    </button>
+                    <input className="btn-login" type="submit" value="Log in" />
                   </div>
                   <div className="divine">
                     <div></div>
@@ -70,6 +76,7 @@ function Login ({ userData, login }) {
                   </div>
                   <a href="src/routes/login#" className="forgot-pw">Forgot password?</a>
                 </div>
+                </form>
               </div>
               <div className="box goto">
                 <p>
@@ -124,7 +131,7 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    login: () => dispatch(login())
+    login: (email: string, password: string) => dispatch(login(email, password))
   }
 }
 
