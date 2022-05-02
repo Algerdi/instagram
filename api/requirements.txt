@@ -1,0 +1,8 @@
+Django==4.0.3
+django_environ==0.8.1
+django_phonenumber_field==6.1.0
+djangorestframework==3.13.1
+djangorestframework_simplejwt==5.1.0
+drf_yasg==1.20.0
+environ==1.0
+Pillow==9.0.1
