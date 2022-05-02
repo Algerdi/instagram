@@ -2,14 +2,7 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { login } from '../redux/login/loginActions'
 import "../styles/login/login.css"
-import ImportScript from "../hooks/importScript";
-
-const divStyle = {
-  backgroundImage: 'url(../styles/login/images/phone-frame.png)'
-}
-const script = (props: any) => {
-  ImportScript("../styles/login/app.js");
-}
+import background from "../styles/login/images/phone-frame.png"
 
 // @ts-ignore
 function Login ({ userData, login }) {
@@ -26,7 +19,7 @@ function Login ({ userData, login }) {
       <div className="container">
         <div className="main-container">
           <div className="main-content">
-            <div className="slide-container" style={divStyle}>
+            <div className="slide-container" style={{ backgroundImage: `url(${background})` }}>
               <div className="slide-content" id="slide-content">
                 <img src={require("../styles/login/images/slide (1).jpg")} alt="slide image" className="active" />
                 <img src={require("../styles/login/images/slide (2).jpg")} alt="slide image" />
@@ -43,24 +36,24 @@ function Login ({ userData, login }) {
                 </div>
                 <div className="signin-form" id="signin-form">
                   <div className="form-group">
-                    <div className="animate-input">
-                                              <span>
-                                                  Phone number, username or email
-                                              </span>
-                      <input type="text"/>
+                    <div className="animateinput">
+                                              {/*<span>*/}
+                                              {/*    Phone number, username or email*/}
+                                              {/*</span>*/}
+                      <input type="text" placeholder="Phone number, username or email"/>
                     </div>
                   </div>
                   <div className="form-group">
                     <div className="animate-input">
-                                              <span>
-                                                  Password
-                                              </span>
-                      <input type="password"/>
+                                              {/*<span>*/}
+                                              {/*    Password*/}
+                                              {/*</span>*/}
+                      <input type="password" placeholder="Password"/>
                       <button>Show</button>
                     </div>
                   </div>
                   <div className="btn-group">
-                    <button className="btn-login" id="signin-btn" disabled>
+                    <button className="btn-login" id="signin-btn"type="submit" value="Submit">
                       Log In
                     </button>
                   </div>
@@ -118,7 +111,6 @@ function Login ({ userData, login }) {
           </div>
         </div>
       </div>
-      {/*<div>{script}</div>*/}
       {/*<script src={require("../styles/login/app.js")}></script>*/}
     </>
   )

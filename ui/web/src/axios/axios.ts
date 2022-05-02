@@ -1,9 +1,6 @@
-import axios, { HeadersDefaults } from 'axios';
+import axios from 'axios';
 
 const baseURL = 'http://localhost:8000/';
-interface CommonHeaderProperties extends HeadersDefaults {
-  Authorization: string;
-}
 
 const api = axios.create({
   baseURL: baseURL,
@@ -11,7 +8,7 @@ const api = axios.create({
   headers: {
     Authorization: (localStorage.getItem('access_token')
       ? 'JWT ' + localStorage.getItem('access_token')
-      : null) as string,
+      : ""),
     'Content-Type': 'application/json',
     accept: 'application/json',
   },
