@@ -1,3 +1,4 @@
+import axios from "axios";
 import api from "../../axios/axios";
 import {
   LOGIN_REQUEST,
@@ -8,9 +9,7 @@ import {
 export const login = (email: string, password: string) => {
   return (dispatch: any) => {
     dispatch(loginRequest())
-    const apiUrl = "http://localhost:8000/api/token/";
-    console.log(email, password);
-    api.post(apiUrl, {
+    axios.post("http://localhost:8000/api/token/", {
       email: email,
       password: password
     })

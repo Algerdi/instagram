@@ -23,7 +23,7 @@ api.interceptors.response.use(
       return api
         .post('api/token/refresh/', {refresh: refresh_token})
         .then((response) => {
-          console.log("aAAAAAAAAAAAAAAAAAAA")
+
           localStorage.setItem('access_token', response.data.access);
           localStorage.setItem('refresh_token', response.data.refresh);
           (api.defaults.headers as any)['Authorization'] = "JWT " + response.data.access;
@@ -32,7 +32,7 @@ api.interceptors.response.use(
           return api(originalRequest);
         })
         .catch(err => {
-          console.log(err)
+          console.log(err.response)
         });
     }
     return Promise.reject(error);
