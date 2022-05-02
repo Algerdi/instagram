@@ -21,9 +21,9 @@ api.interceptors.response.use(
     if (error.response.status === 401 && error.response.statusText === "Unauthorized") {
       const refresh_token = localStorage.getItem('refresh_token');
       return api
-        .post('/token/refresh/', {refresh: refresh_token})
+        .post('api/token/refresh/', {refresh: refresh_token})
         .then((response) => {
-
+          console.log("aAAAAAAAAAAAAAAAAAAA")
           localStorage.setItem('access_token', response.data.access);
           localStorage.setItem('refresh_token', response.data.refresh);
           (api.defaults.headers as any)['Authorization'] = "JWT " + response.data.access;
