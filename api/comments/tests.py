@@ -12,7 +12,7 @@ client = Client()
 
 
 class PostTest(TestCase):
-    """ Test module for Puppy model """
+    """ Test module for Post model """
 
     def setUp(self):
         self.post = Post.objects.create(postContent='Create post 1')
