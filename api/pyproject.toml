@@ -17,6 +17,9 @@ Pillow = "^9.0.1"
 djangorestframework-simplejwt = "^5.1.0"
 coverage = "^6.3.2"
 django-cors-headers = "^3.11.0"
+react = "^4.3.0"
+django-rest-framework-nested = "^0.0.1"
+drf-nested-routers = "^0.93.4"
 
 [tool.poetry.dev-dependencies]
 
