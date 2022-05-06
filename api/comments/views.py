@@ -18,10 +18,10 @@ class CommentViewSet(CreateModelMixin,
                      GenericViewSet,):
 
     def get_queryset(self):
-        return Comment.objects.filter(post_id=self.kwargs['p_pk']).select_related('author')
+        return Comment.objects.filter(post_id=self.kwargs['p__pk']).select_related('author')
 
     def get_serializer_context(self):
-        return {'post_id': self.kwargs['p_pk']}
+        return {'post_id': self.kwargs['p__pk']}
 
     def get_serializer_class(self):
         if self.request.method == 'POST':
