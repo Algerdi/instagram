@@ -43,10 +43,10 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
 
     email = models.EmailField(unique=True)
     user_name = models.CharField(max_length=50, unique=True)
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, blank=True)
     avatar = models.ImageField(upload_to=upload_to, blank=True,
                                null=True, default='posts/default.jpg')
-    phone_number = PhoneNumberField(null=False, blank=False, unique=True)
+    phone_number = PhoneNumberField(blank=True, null=True, unique=True)
     website = models.URLField(max_length=200, null=True, blank=True)
     start_date = models.DateTimeField(default=timezone.now)
     bio = models.TextField(max_length=500, blank=True)
@@ -54,7 +54,7 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
         ('M', 'Male'),
         ('F', 'Female'),
     )
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+    gender = models.CharField(max_length=1, blank=True, choices=GENDER_CHOICES)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
 
