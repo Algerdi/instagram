@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { Link } from "react-router-dom";
 import { login } from '../redux/login/loginActions';
 import "../styles/login/login.css";
 import background from "../styles/images/phone-frame.png";
@@ -13,7 +14,6 @@ function Login ({ userData, login }) {
   const submit = (event: any) => {
     event.preventDefault();
     login(email, password);
-
   }
 
   return (
@@ -72,7 +72,7 @@ function Login ({ userData, login }) {
               <div className="box goto">
                 <p>
                   Don't have an account?
-                  <a href="src/routes/login#">Sign up</a>
+                  <Link to="/register">Sign up</Link>
                 </p>
               </div>
 
@@ -92,17 +92,17 @@ function Login ({ userData, login }) {
         </div>
         <div className="footer">
           <div className="links">
-            <a href="src/routes/login#">About</a>
-            <a href="src/routes/login#">Blog</a>
-            <a href="src/routes/login#">Jobs</a>
-            <a href="src/routes/login#">Help</a>
-            <a href="src/routes/login#">API</a>
-            <a href="src/routes/login#">Privacy</a>
-            <a href="src/routes/login#">Terms</a>
-            <a href="src/routes/login#">Top Accounts</a>
-            <a href="src/routes/login#">Hashtags</a>
-            <a href="src/routes/login#">Locations</a>
-            <a href="src/routes/login#" id="darkmode-toggle">Darkmode</a>
+            <a href="">About</a>
+            <a href="">Blog</a>
+            <a href="">Jobs</a>
+            <a href="">Help</a>
+            <a href="">API</a>
+            <a href="">Privacy</a>
+            <a href="">Terms</a>
+            <a href="">Top Accounts</a>
+            <a href="">Hashtags</a>
+            <a href="">Locations</a>
+            <a href="" id="darkmode-toggle">Darkmode</a>
           </div>
           <div className="copyright">
             © 2021 Instagram from Facebook
