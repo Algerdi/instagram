@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
-import { login } from '../redux/login/loginActions';
-import "../styles/login/login.css";
-import background from "../styles/images/phone-frame.png";
+import { login } from '../../store/login/loginActions';
+import "../../styles/login/login.css";
+import background from "../../styles/images/phone-frame.png";
 
 // @ts-ignore
 function Login ({ userData, login }) {
@@ -23,18 +23,18 @@ function Login ({ userData, login }) {
           <div className="main-content">
             <div className="slide-container" style={{ backgroundImage: `url(${background})` }}>
               <div className="slide-content" id="slide-content">
-                <img src={require("../styles/images/slide (1).jpg")} alt="slide image" className="active" />
-                <img src={require("../styles/images/slide (2).jpg")} alt="slide image" />
-                <img src={require("../styles/images/slide (3).jpg")} alt="slide image" />
-                <img src={require("../styles/images/slide (4).jpg")} alt="slide image" />
-                <img src={require("../styles/images/slide (5).jpg")} alt="slide image" />
+                <img src={require("../../styles/images/slide (1).jpg")} alt="slide image" className="active" />
+                <img src={require("../../styles/images/slide (2).jpg")} alt="slide image" />
+                <img src={require("../../styles/images/slide (3).jpg")} alt="slide image" />
+                <img src={require("../../styles/images/slide (4).jpg")} alt="slide image" />
+                <img src={require("../../styles/images/slide (5).jpg")} alt="slide image" />
               </div>
             </div>
             <div className="form-container">
               <div className="form-content box">
                 <div className="logo">
-                  <img src={require("../styles/images/logo-light.png")} alt="Instagram logo" className="logo-light"/>
-                  <img src={require("../styles/images/logo-dark.png")} alt="Instagram logo" className="logo-dark"/>
+                  <img src={require("../../styles/images/logo-light.png")} alt="Instagram logo" className="logo-light"/>
+                  <img src={require("../../styles/images/logo-dark.png")} alt="Instagram logo" className="logo-dark"/>
                 </div>
                 <form onSubmit={submit}>
                 <div className="signin-form" id="signin-form">
@@ -61,7 +61,7 @@ function Login ({ userData, login }) {
                   </div>
                   <div className="btn-group">
                     <button className="btn-fb">
-                      <img src={require("../styles/images/facebook-icon.png")} alt="" />
+                      <img src={require("../../styles/images/facebook-icon.png")} alt="" />
                         <span>Log in with Facebook</span>
                     </button>
                   </div>
@@ -80,10 +80,10 @@ function Login ({ userData, login }) {
                 <p>Get the app.</p>
                 <div className="store-link">
                   <a href="src/routes/login#">
-                    <img src={require("../styles/images/app-store.png")} alt="app store" />
+                    <img src={require("../../styles/images/app-store.png")} alt="app store" />
                   </a>
                   <a href="src/routes/login#">
-                    <img src={require("../styles/images/gg-play.png")} alt="google play" />
+                    <img src={require("../../styles/images/gg-play.png")} alt="google play" />
                   </a>
                 </div>
               </div>

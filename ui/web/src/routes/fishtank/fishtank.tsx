@@ -1,4 +1,5 @@
-import gif from '../fishtank.gif';
+import gif from '../../fishtank.gif';
+import React from 'react';
 
 export default function Fishtank() {
     return (

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-import "../styles/register/register.css";
-import {register} from "../redux/register/registerActions";
+import "../../styles/register/register.css";
+import {register} from "../../store/register/registerActions";
 import {connect} from "react-redux";
 
 // @ts-ignore
@@ -22,7 +22,7 @@ function Register ({userData, register}) {
       <div className="page">
         <div className="header">
           <div className="logo">
-            <img src={require("../styles/images/logo-light.png")} alt="Instagram logo" className="logo-light"/>
+            <img src={require("../../styles/images/logo-light.png")} alt="Instagram logo" className="logo-light"/>
           </div>
           <p>Sign up to see photos and <br/> videos from your friends.</p>
           <button><i className="fab fa-facebook-square"></i> Log in with Facebook</button>
@@ -60,10 +60,10 @@ function Register ({userData, register}) {
       <div className="otherapps">
         <p>Get the app.</p>
         <a href="src/routes/login#">
-          <img src={require("../styles/images/app-store.png")} alt="app store" />
+          <img src={require("../../styles/images/app-store.png")} alt="app store" />
         </a>
         <a href="src/routes/login#">
-          <img src={require("../styles/images/gg-play.png")} alt="google play" />
+          <img src={require("../../styles/images/gg-play.png")} alt="google play" />
         </a>
       </div>
       <div className="footer">
