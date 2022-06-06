@@ -1,11 +1,11 @@
 from rest_framework import status
+from  rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet, mixins, GenericViewSet
-from tags.models import TaggedItem
-from tags.serializers import TagSerializer
-from .models import Post
 from .serializers import PostSerializer, PostSerializerNoLikes, PostSerializerView, LikeSaveSerializer,SavedPostsSerializer
-from  rest_framework.views import APIView
+from tags.serializers import TagSerializer
+from tags.models import TaggedItem
+from .models import Post
 
 class PostViewSet(ModelViewSet):
 
@@ -75,24 +75,3 @@ class TaggedPostsViewSet(APIView):
                 prefetch_related('tags')
         serializer = PostSerializerView(queryset, many=True, context={'request': request})
         return Response(serializer.data)
-
-
-# def perform_create(self, serializer):
-#     serializer.save()
-# def update(self, request, *args, **kwargs):
-#     pers = request.user.id
-#     post = Post.objects.get(id = kwargs['pk'])
-#     if pers == post.author.id:
-#         partial = kwargs.pop('partial', True)
-#         instance = self.get_object()
-#         serializer = self.get_serializer(instance, data=request.data, partial=partial)
-#         serializer.is_valid(raise_exception=True)
-#         serializer.save()
-#         return Response(serializer.data)
-#     elif pers != post.author.id:
-#         # serializer = LikeSerializer(data=request.data)
-#         # serializer.is_valid(raise_exception=True)
-#         # serializer.save()
-#         # return Response(serializer.data)
-#         return Response({'error': 'Not an author'},status=status.HTTP_405_METHOD_NOT_ALLOWED)
-

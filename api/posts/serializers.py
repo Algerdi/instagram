@@ -1,10 +1,10 @@
 from rest_framework import serializers
-from tags.serializers import TagSerializer
-from tags.models import TaggedItem
-from .models import Post
-from comments.serializers import SimpleCommentSerializer
-from user.models import NewUser
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from .models import Post
+from user.models import NewUser
+from tags.models import TaggedItem
+from tags.serializers import TagSerializer
+from comments.serializers import SimpleCommentSerializer
 
 class UserSerializerExpanded(serializers.ModelSerializer):
     class Meta:
@@ -102,49 +102,3 @@ class SavedPostsSerializer(serializers.ModelSerializer):
         model = Post
         fields = ['id', 'image', 'video', 'postContent', 'tags']
         read_only_fields = ['id', 'postContent', 'saveSystem']
-
-
-    # interesting method
-    # likes1 = serializers.SerializerMethodField(method_name='likes')
-    # def likes(self, post:Post):
-    #     user = self.context['post_author_id']
-    #     pk  = self.context['pk']
-    #     like = post.likes.through.objects.get(post_id=pk['pk'], newuser_id=user)
-    #     user_id = like.newuser_id
-    #     print(user_id)
-    #     return user_id
-
-
-    # def update(self, instance,validated_data):
-    #     if validated_data['tags_label'] != '':
-    #         TaggedItem.objects.create_tags(Post, instance.id, validated_data['tags_label'])
-    #         instance.save()
-    #         return instance
-    #     else:
-    #         return instance
-
-    # def update(self, instance,validated_data):
-    #     print(instance)
-    #     print(validated_data)
-    #     if validated_data['tags_label'] != '':
-    #         TaggedItem.objects.create_tags(Post, instance.id, validated_data['tags_label'])
-    #         m2m_fields = [instance.likes, instance.saveSystem]
-    #         print(m2m_fields)
-    #         for attr, value in m2m_fields:
-    #             field = getattr(instance, attr)
-    #             field.set(value)
-    #         instance.save()
-    #         return instance
-    #     else:
-    #         return instance
-
-    # def create(self, validated_data):
-    #     print(validated_data)
-    #     if validated_data['tags_label'] != '':
-    #         post = self.context['pk']
-    #         tag = TaggedItem.objects.create_tags(Post, post['pk'], validated_data['tags_label'])
-    #         print(tag)
-    #         return Post.objects.create(tags_label=tag)
-    #     else:
-    #         return validated_data
-
