@@ -19,6 +19,7 @@ coverage = "^6.3.2"
 react = "^4.3.0"
 django-rest-framework-nested = "^0.0.1"
 drf-nested-routers = "^0.93.4"
+django-debug-toolbar = "^3.4.0"
 
 [tool.poetry.dev-dependencies]
 
